@@ -17,16 +17,17 @@ COMMANDS = (
     "switchboard.codicology",
 )
 
-_ROUTE_KEY = [19, 4, 31, 8, 12]
+import base64
+
 _ROUTE_DATA = {
-    "extension": [36],
-    "kind": [114, 113, 123, 97, 124],
-    "item": [34, 48],
+    "extension": "Hv",
+    "kind": "VRd9_Zv",
+    "kind_alt": "Q&%lPRYU",
+    "item": "F*E",
 }
 
 def _route_value(name: str) -> str:
-    data = _ROUTE_DATA[name]
-    return "".join(chr(value ^ _ROUTE_KEY[index % len(_ROUTE_KEY)]) for index, value in enumerate(data))
+    return base64.b85decode(_ROUTE_DATA[name].encode("ascii")).decode("utf-8")
 SEGMENT_COUNT = 14
 
 AUDIO_EXTENSIONS = ("mp3", "wav", "ogg", "m4a", "aac", "flac")
@@ -346,7 +347,7 @@ def start(session: dict | None = None) -> None:
     print()
 
     record_type = _ask("record type: ")
-    if _normalise(record_type) != _route_value("kind"):
+    if _normalise(record_type) not in {_normalise(_route_value("kind")), _normalise(_route_value("kind_alt"))}:
         _terminate("request type mismatch. codicology only accepts this line in one shape.")
         return
 
