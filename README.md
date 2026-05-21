@@ -1,6 +1,6 @@
 # stillwater-libs​‌‌‌​‌​​​‌‌​‌​​​​‌‌​​‌​‌​‌​‌‌‌‌‌​‌‌‌​​‌​​‌‌​​​​‌​‌‌​‌​​‌​‌‌​‌‌‌​​‌​‌‌‌‌‌​‌‌​​‌‌​​‌‌​​​​‌​‌‌​‌‌​​​‌‌​‌‌​​​‌‌‌​​‌‌​‌​‌‌‌‌‌​‌‌​‌​​​​‌‌​​‌​‌​‌‌​​​​‌​‌‌‌​‌‌​​‌‌‌‌​​‌​‌​‌‌‌‌‌​‌‌‌​‌‌‌​‌‌​‌​​​​‌‌​​‌​‌​‌‌‌​​‌​​‌‌​​‌​‌​‌​‌‌‌‌‌​‌‌‌​‌​​​‌‌​‌​​​​‌‌​​‌​‌​‌​‌‌‌‌‌​‌‌​​​‌​​‌‌​​‌​‌​‌‌​​​​‌​‌‌‌​​‌‌​‌‌‌​‌​​​‌​‌‌‌‌‌​‌‌​‌‌​​​‌‌​‌​​‌​‌‌​​‌​‌​‌‌‌​​‌‌​‌​‌‌‌‌‌​‌‌​‌‌​​​‌‌​‌​​‌​‌‌​​‌‌‌​‌‌​‌​​​​‌‌‌​‌​​​‌‌​‌‌​​​‌‌‌‌​​‌
 
-> Part of a wider ARG. Ignore this repository if you are not meant to be here.
+> Part of a wider ARG. Ignore this repository if you are not meant to be here. - ARG players, if you have a github account follow the Repo for stat tracking
 > Internal libraries for the **Stillwater Foundation**, consolidated for use across all departments.
 
 This repository contains the canonical implementation of the Foundation's shared utilities, including:
