@@ -17,9 +17,16 @@ COMMANDS = (
     "switchboard.codicology",
 )
 
-VALID_EXTENSION = "7"
-VALID_TYPE = "audio"
-VALID_ID = "14"
+_ROUTE_KEY = [19, 4, 31, 8, 12]
+_ROUTE_DATA = {
+    "extension": [36],
+    "kind": [114, 113, 123, 97, 124],
+    "item": [34, 48],
+}
+
+def _route_value(name: str) -> str:
+    data = _ROUTE_DATA[name]
+    return "".join(chr(value ^ _ROUTE_KEY[index % len(_ROUTE_KEY)]) for index, value in enumerate(data))
 SEGMENT_COUNT = 14
 
 AUDIO_EXTENSIONS = ("mp3", "wav", "ogg", "m4a", "aac", "flac")
@@ -51,7 +58,7 @@ SEGMENT_NAME_PATTERNS = (
 )
 
 AUDIO_SEARCH_DIRS = (
-    "docs/handbook/audio",
+    "docs/audio",
     "docs/sealed/audio",
     "docs/audio/SW-AUD-014",
     "docs/sealed/audio/SW-AUD-014",
@@ -329,17 +336,17 @@ def start(session: dict | None = None) -> None:
 
     print()
     extension = _ask("dial extension: ")
-    if _normalise(extension) != VALID_EXTENSION:
+    if _normalise(extension) != _route_value("extension"):
         _terminate("extension mismatch. no such desk is willing to be found from here.")
         return
 
-    print("extension 7 accepted.")
+    print("extension accepted.")
     _pause(0.3)
     print("the receiver becomes colder.")
     print()
 
     record_type = _ask("record type: ")
-    if _normalise(record_type) != VALID_TYPE:
+    if _normalise(record_type) != _route_value("kind"):
         _terminate("request type mismatch. codicology only accepts this line in one shape.")
         return
 
@@ -349,13 +356,13 @@ def start(session: dict | None = None) -> None:
     print()
 
     archive_id = _ask("audio id: ")
-    if _normalise(archive_id) != VALID_ID:
+    if _normalise(archive_id) != _route_value("item"):
         _terminate("archive id mismatch. the wrong file answered first.")
         return
 
-    print("SW-AUD-014 located.")
+    print("archive channel located.")
     _pause(0.3)
-    print("fourteen-part hold channel requested.")
+    print("fragmented hold channel requested.")
     _pause(0.5)
 
     audio_segments, missing = _find_audio_segments()

@@ -8,7 +8,7 @@ import sys
 import time
 from typing import Callable
 
-from stillwater import auth, comshell_extra, debrief, egress, forms, nodes, pattern_integrity, senion_verify
+from stillwater import auth, comshell_extra, debrief, egress, forms, nodes, pattern_integrity, senion_verify, senion_verify
 from stillwater._internal import repository
 
 try:
@@ -217,75 +217,6 @@ def cmd_pct90156(args: list[str]) -> None:
     print()
     print(random.choice([" Channel closed.", " Channel closed before it could be followed.", " Channel closed. Do not reopen from a reflected terminal."]))
 
-
-
-def _normalise_answer(value: str) -> str:
-    value = value.lower().strip()
-    replacements = {
-        "’": "'",
-        "‘": "'",
-        "“": '"',
-        "”": '"',
-        "—": " ",
-        "–": " ",
-        "-": " ",
-        "_": " ",
-        ".": " ",
-        ",": " ",
-        ":": " ",
-        ";": " ",
-        "?": " ",
-        "!": " ",
-        "/": " ",
-        "\\": " ",
-        "[": " ",
-        "]": " ",
-        "(": " ",
-        ")": " ",
-        "{": " ",
-        "}": " ",
-    }
-    for old, new in replacements.items():
-        value = value.replace(old, new)
-    return " ".join(value.split())
-
-
-def _answer_has(answer: str, *terms: str) -> bool:
-    normal = _normalise_answer(answer)
-    return all(term in normal for term in terms)
-
-
-def _answer_any(answer: str, *terms: str) -> bool:
-    normal = _normalise_answer(answer)
-    return any(term in normal for term in terms)
-
-
-def _gate_prompt(number: int, title: str, prompt: str) -> str:
-    print()
-    print(f"GATE {number:02d} // {title}")
-    print("-" * 64)
-    print(prompt)
-    return input("translation> ")
-
-
-def _pass_gate(number: int) -> None:
-    print(random.choice([
-        f"Gate {number:02d} accepted. The register does not object.",
-        f"Gate {number:02d} accepted. Ink comparison stable.",
-        f"Gate {number:02d} accepted. Codicology witness retained.",
-    ]))
-
-
-def _fail_gate(number: int) -> None:
-    print()
-    print(f"GATE {number:02d} REFUSED.")
-    print(random.choice([
-        "The register closes before the translation is complete.",
-        "Codicology cannot certify that reading.",
-        "The answer is close enough to be dangerous, but not close enough to file.",
-        "The archive records effort. The archive does not record clearance.",
-    ]))
-    print("Verification terminated. Restart with `verify.senion` when ready.")
 
 
 
