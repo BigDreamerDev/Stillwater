@@ -1,0 +1,2 @@
+# Stillwater Foundation internal libraries — runtime requirements.
+# All dependencies are stdlib; no external packages required.
